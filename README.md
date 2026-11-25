@@ -6,8 +6,6 @@
 
 A lightweight desktop audio player for Windows built with `libmpv` and `CustomTkinter`. Designed to stay out of the way while gaming or multitasking—keeping RAM usage low, pausing UI overhead in system tray mode, and caching tracks locally without spiking your ping.
 
-<!-- To add a screenshot: upload an image to assets/screenshot.png and uncomment the line below -->
-<!-- ![LitePlayer Screenshot](assets/screenshot.png) -->
 
 ## Download (Portable Windows Build)
 
@@ -20,18 +18,18 @@ If you just want to run the app without installing Python or dependencies:
 ## Features
 
 **Performance & Audio Engine**
-* **Audio-Only Playback:** Powered by `libmpv` (`vid=no`) with a 15 MiB demuxer cap for minimal CPU/RAM usage.
-* **Zero-GPU Tray Mode:** Closing the window minimizes the player to the Windows system tray and pauses all UI polling loops.
-* **Local LRU Cache & Pre-fetching:** Played tracks are cached locally (2 GB limit) for instant replay. The next track in the queue is pre-fetched in the background at a 500 KB/s rate limit to prevent network/ping spikes.
+- **Audio-Only Playback:** Powered by `libmpv` (`vid=no`) with a 15 MiB demuxer cap for minimal CPU/RAM usage.
+- **Zero-GPU Tray Mode:** Closing the window minimizes the player to the Windows system tray and pauses all UI polling loops.
+- **Local LRU Cache & Pre-fetching:** Played tracks are cached locally (2 GB limit) for instant replay. The next track in the queue is pre-fetched in the background at a 500 KB/s rate limit to prevent network/ping spikes.
 
 **Playback & Library**
-* **YouTube Music Integration:** Search tracks, load album art, and view live lyrics via `ytmusicapi`.
-* **Local SQLite Library:** Persistent storage (`library.db`) for Liked Songs, custom playlists, and Recently Played history.
-* **Queue Controls:** Shuffle, Repeat (Off / All / One), Up Next queue view, and a seekable progress bar.
+- **YouTube Music Integration:** Search tracks, load album art, and view live lyrics via `ytmusicapi`.
+- **Local SQLite Library:** Persistent storage (`library.db`) for Liked Songs, custom playlists, and Recently Played history.
+- **Queue Controls:** Shuffle, Repeat (Off / All / One), Up Next queue view, and a seekable progress bar.
 
 **UI & Quality of Life**
-* **Native Windows 11 Styling:** Black/green/white theme with a DWM-styled black title bar and green window border.
-* **Built-in Feedback:** Hover tooltips, toast notifications, scroll-wheel volume control, and dynamic taskbar titles.
+- **Native Windows 11 Styling:** Black/green/white theme with a DWM-styled black title bar and green window border.
+- **Built-in Feedback:** Hover tooltips, toast notifications, scroll-wheel volume control, and dynamic taskbar titles.
 
 ## Keyboard Shortcuts
 
@@ -52,3 +50,29 @@ lite-player/
 ├── extractor.py     # YouTube Music search and lyrics lookup
 ├── storage.py       # SQLite database for playlists, likes, and history
 └── requirements.txt
+```
+
+## Running from Source
+
+### Prerequisites (Windows)
+1. **Python 3.10+**
+2. **FFmpeg & Deno:**
+   ```powershell
+   winget install ffmpeg deno
+   ```
+3. **`libmpv-2.dll`:** Download the latest `mpv-dev-x86_64` archive from [shinchiro/mpv-winbuild-cmake](https://github.com/shinchiro/mpv-winbuild-cmake/releases) and place `libmpv-2.dll` in the project root folder.
+
+### Setup
+```powershell
+git clone https://github.com/bongychang/lite-player.git
+cd lite-player
+
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+python app.py
+```
+## License
+
+Released under the [MIT License](LICENSE). Built by **bongychang**.
